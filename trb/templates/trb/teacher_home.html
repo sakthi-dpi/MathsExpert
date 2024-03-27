@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Home</title>
+</head>
+<body>
+    <h2>Teacher Home</h2>
+    
+    <!-- Student Account Requests Section -->
+    <h3><a href="{% url 'list_student_requests' %}">New Student requests</a> ({{ student_requests_count }})</h3>
+
+    <!-- Students List Section -->
+    <h3><a href="{% url 'students_list' %}">Students List</a></h3>
+    
+
+
+    <!-- Other Sections (Courses, Question Papers, etc.) -->
+    <h3>Courses</h3>
+    <ul>
+        {% for course in courses %}
+            <li>{{ course.name }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Question Papers</h3>
+    <ul>
+        {% for paper in question_papers %}
+            <li>{{ paper.title }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Exam Schedule</h3>
+    <ul>
+        {% for exam in exam_schedule %}
+            <li>{{ exam.date }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Class Timetable</h3>
+    <ul>
+        {% for timetable in class_timetable %}
+            <li>{{ timetable.time }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

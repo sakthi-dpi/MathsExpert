@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <style>
+        .photo-container {
+            width: 150px;
+            height: 150px;
+            border: 2px solid black;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <h2>{{ student.firstname }}'s Details</h2>
+    <div class="photo-container">
+        <img src="{{ student.passport_photo.url }}" alt="{{ student.firstname }}'s Photo">
+    </div>
+    <ul>
+        <li><strong>First Name:</strong> {{ student.firstname }}</li>
+        <li><strong>Last Name:</strong> {{ student.lastname }}</li>
+        <li><strong>Date of Birth:</strong> {{ student.date_of_birth }}</li>
+        <li><strong>Qualification:</strong> {{ student.qualification }}</li>
+        <li><strong>Employment Status:</strong> {{ student.employment_status }}</li>
+        <li><strong>Gender:</strong> {{ student.gender }}</li>
+        <li><strong>Contact Number:</strong> {{ student.contact_number }}</li>
+        <li><strong>Email:</strong> {{ student.email }}</li>
+        <li><strong>Guardian Contact Number:</strong> {{ student.guardian_contact_number }}</li>
+        <li><strong>Contact Address:</strong> {{ student.contact_address }}</li>
+        <li><strong>Date of Joining:</strong> {{ student.date_of_joining }}</li>
+        <li><strong>Medium of Study:</strong> {{ student.medium_of_study }}</li>
+        <li><strong>Batch Type:</strong> {{ student.batch_type }}</li>
+        <li><strong>Class Type:</strong> {{ student.class_type }}</li>
+        <li><strong>Recommended By:</strong> {{ student.recommended_by }}</li>
+        <!-- Add any other details here -->
+    </ul>
+
+    
+    <form action="{% url 'approve_student' student.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" name="action" value="allow">Allow</button>
+    </form>
+    <form action="{% url 'deny_student' student.id %}" method="post">
+        {% csrf_token %}
+        <button onclick="goBack()" type="submit" name="action" value="deny" >Delete</button>
+    </form>
+
+    
+    <button onclick="goBack()">Back</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,19 @@
+<!-- student_requests.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Account Requests</title>
+</head>
+<body>
+    <h2>Student Account Requests</h2>
+    <ul>
+        {% for student in student_requests %}
+            <li><a href="{% url 'student_detail_requests' student.id %}">{{ student.firstname }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

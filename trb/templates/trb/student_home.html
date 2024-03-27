@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Home</title>
+    <style>
+        .rounded-photo {
+            width: 150px; /* Adjust the size of the circle */
+            height: 150px; /* Adjust the size of the circle */
+            border-radius: 50%; /* Makes the photo circular */
+            overflow: hidden; /* Ensures the image doesn't overflow */
+        }
+
+        .rounded-photo img {
+            width: 100%; /* Makes the image cover the entire circle */
+            height: auto; /* Maintains aspect ratio */
+            display: block; /* Ensures proper rendering */
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome {{ student.firstname }}</h2>
+    
+    <!-- Form for logging out -->
+    <form action="{% url 'student_logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
+    <!-- Display passport photo in a round circle -->
+    <div class="rounded-photo">
+        <img src="{{ student.passport_photo.url }}" alt="Passport Photo">
+    </div>
+
+    <h3>Question Papers</h3>
+    <ul>
+        {% for paper in question_papers %}
+            <li>{{ paper.title }}</li>
+        {% endfor %}
+    </ul>
+    
+    <h3>Results</h3>
+    <ul>
+        {% for result in results %}
+            <li>{{ result.score }}</li>
+        {% endfor %}
+    </ul>
+    
+    <h3>Exam Schedule</h3>
+    <ul>
+        {% for exam in exam_schedule %}
+            <li>{{ exam.date }}</li>
+        {% endfor %}
+    </ul>
+    
+    <h3>Class Timetable</h3>
+    <ul>
+        {% for timetable in class_timetable %}
+            <li>{{ timetable.time }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
